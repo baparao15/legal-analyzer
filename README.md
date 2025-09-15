@@ -1,10 +1,12 @@
 # Legal Document Analyzer 📜⚖️
 
-An AI-powered legal document analyzer with a beautiful 3D UI that helps identify risky clauses in legal agreements and provides actionable recommendations.
+An AI-powered legal document analyzer with a beautiful 3D UI that helps identify risky clauses in legal agreements and provides actionable recommendations using advanced NLP techniques and vector similarity search.
 
 ![Legal Document Analyzer](https://img.shields.io/badge/AI-Powered-blue)
 ![Python](https://img.shields.io/badge/Python-3.8+-green)
 ![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red)
+![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-orange)
+![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector--DB-purple)
 
 ## 🌟 Features
 
@@ -35,13 +37,16 @@ The analyzer can detect various types of risky clauses including:
 
 1. **Clone the repository**:
 ```bash
-cd C:\Users\pendy\Desktop\hello\ml\nextwave\pro
+git clone <repository-url>
+cd legal-document-analyzer
 ```
 
 2. **Create a virtual environment** (recommended):
 ```bash
 python -m venv venv
 venv\Scripts\activate  # On Windows
+# or
+source venv/bin/activate  # On macOS/Linux
 ```
 
 3. **Install dependencies**:
@@ -54,38 +59,55 @@ pip install -r requirements.txt
 python -m spacy download en_core_web_sm
 ```
 
+5. **Set up environment variables**:
+```bash
+# Create .env file and add your OpenAI API key
+echo "OPENAI_API_KEY=your_openai_api_key_here" > .env
+```
+
 ## 🚀 Quick Start
 
-1. **Run the application**:
+### Method 1: Using Batch File (Windows)
+```bash
+# Double-click run.bat or execute in command prompt
+run.bat
+```
+
+### Method 2: Direct Streamlit Command
 ```bash
 streamlit run app.py
 ```
 
-2. **Open your browser** and navigate to `http://localhost:8501`
-
-3. **Upload a PDF** legal document using the sidebar
-
+### Usage Steps
+1. **Open your browser** and navigate to `http://localhost:8501`
+2. **Upload a PDF** legal document using the sidebar
+3. **Configure analysis settings**:
+   - Enable "Use AI Enhanced Analysis" for GPT-4 powered analysis
+   - Enable "Use Vector Database Context" for similarity search
 4. **Click "Analyze Document"** to start the analysis
-
 5. **Explore the results** in the different tabs:
    - 📋 **Analysis**: Overview and risk summary
    - 🔍 **Risk Details**: Detailed breakdown of each risky clause
-   - 📊 **Visualizations**: 3D charts and graphs
-   - 💾 **History**: Previously analyzed documents
+   - 📄 **Document View**: Original document content
 
 ## 📁 Project Structure
 
 ```
-pro/
-├── app.py                    # Main Streamlit application
-├── legal_risk_analyzer.py    # Risk detection engine
-├── pdf_vector_pipeline.py    # PDF processing and vector storage
+legal-document-analyzer/
+├── app.py                    # Main Streamlit application with 3D UI
+├── legal_risk_analyzer.py    # Pattern-based risk detection engine
+├── openai_legal_analyzer.py  # AI-powered risk analysis using GPT-4
+├── pdf_vector_pipeline.py    # PDF processing and ChromaDB vector storage
 ├── requirements.txt          # Python dependencies
-├── README.md                # This file
-└── legal/                   # Folder containing legal documents
-    ├── document1.pdf
-    ├── document2.pdf
-    └── ...
+├── run.bat                  # Windows startup script
+├── .env                     # Environment variables (API keys)
+├── README.md                # This documentation
+├── .streamlit/              # Streamlit configuration
+│   └── config.toml
+├── legal/                   # Sample legal documents
+│   ├── *.pdf files
+└── legal_vector_db/         # ChromaDB vector database (auto-generated)
+    └── chroma.sqlite3
 ```
 
 ## 🔧 Configuration
@@ -157,14 +179,39 @@ Edit `legal_risk_analyzer.py` to add or modify risk patterns:
    - Try processing smaller documents
    - Reduce the chunk size in settings
 
+## 🔬 Technical Approach
+
+Our legal document analyzer uses a multi-layered approach combining traditional NLP with modern AI:
+
+### 1. **Dual Analysis Engine**
+- **Pattern-Based Analysis**: Uses regex patterns and NLP to detect known risky clause types
+- **AI-Enhanced Analysis**: Leverages GPT-4 for contextual understanding and nuanced risk assessment
+
+### 2. **Vector Database Integration**
+- **ChromaDB**: Stores document embeddings for similarity search
+- **Sentence Transformers**: Creates semantic embeddings of legal clauses
+- **Context Enhancement**: Uses similar clauses from database to improve analysis accuracy
+
+### 3. **Risk Assessment Framework**
+- **Multi-Level Scoring**: High/Medium/Low risk classification
+- **Contextual Recommendations**: Provides specific negotiation strategies
+- **Alternative Clauses**: Suggests safer alternatives for risky terms
+
+### 4. **Modern UI/UX**
+- **3D Glassmorphism Design**: Modern, professional interface
+- **Interactive Visualizations**: Plotly-powered charts and graphs
+- **Real-time Processing**: Streamlit-based responsive web application
+
 ## 📈 Future Enhancements
 
-- [ ] Multi-language support
-- [ ] Export analysis reports to PDF
+- [ ] Multi-language support for international contracts
+- [ ] Export analysis reports to PDF with detailed recommendations
 - [ ] Batch processing for multiple documents
-- [ ] Custom clause templates
-- [ ] Integration with legal databases
-- [ ] Mobile app version
+- [ ] Custom clause templates and risk patterns
+- [ ] Integration with legal databases and case law
+- [ ] Mobile app version with offline capabilities
+- [ ] Contract comparison and diff analysis
+- [ ] Legal precedent search and citation
 
 ## 🤝 Contributing
 
@@ -174,13 +221,24 @@ Feel free to submit issues, fork the repository, and create pull requests for an
 
 This project is for educational and personal use. Please ensure you have the right to analyze any documents you upload.
 
+## 🔒 Security & Privacy
+
+- **Local Processing**: All document analysis happens on your machine
+- **No Data Transmission**: Documents are not sent to external servers (except OpenAI API for AI analysis)
+- **API Key Security**: Store your OpenAI API key securely in `.env` file
+- **Temporary Storage**: Uploaded files are processed and immediately deleted
+- **Vector Database**: Stored locally in `./legal_vector_db`
+
 ## 🙏 Acknowledgments
 
-- Built with [Streamlit](https://streamlit.io/)
-- Powered by [Sentence Transformers](https://www.sbert.net/)
-- PDF processing by [PyMuPDF](https://pymupdf.readthedocs.io/)
-- Vector storage by [ChromaDB](https://www.trychroma.com/)
+- **UI Framework**: [Streamlit](https://streamlit.io/) for rapid web app development
+- **AI Analysis**: [OpenAI GPT-4](https://openai.com/) for advanced legal reasoning
+- **Embeddings**: [Sentence Transformers](https://www.sbert.net/) for semantic similarity
+- **PDF Processing**: [PyMuPDF4LLM](https://pymupdf.readthedocs.io/) for text extraction
+- **Vector Database**: [ChromaDB](https://www.trychroma.com/) for similarity search
+- **Visualizations**: [Plotly](https://plotly.com/) for interactive 3D charts
+- **NLP**: [spaCy](https://spacy.io/) and [NLTK](https://www.nltk.org/) for text processing
 
 ---
 
-Made with ❤️ for demystifying legal documents
+**Made with ❤️ for demystifying legal documents and empowering better contract negotiations**
