@@ -243,4 +243,5 @@ This project is for educational and personal use. Please ensure you have the rig
 
 **Made with ❤️ for demystifying legal documents and empowering better contract negotiations**
 #   l e g a l - a n a l y z e r  
+ #   l e g a l - a n a l y z e r  
  
