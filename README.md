@@ -2,12 +2,6 @@
 
 An AI-powered legal document analyzer with a beautiful 3D UI that helps identify risky clauses in legal agreements and provides actionable recommendations using advanced NLP techniques and vector similarity search.
 
-![Legal Document Analyzer](https://img.shields.io/badge/AI-Powered-blue)
-![Python](https://img.shields.io/badge/Python-3.8+-green)
-![Streamlit](https://img.shields.io/badge/Streamlit-1.28+-red)
-![OpenAI](https://img.shields.io/badge/OpenAI-GPT--4-orange)
-![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector--DB-purple)
-
 ## 🌟 Features
 
 - **🔍 AI-Powered Risk Detection**: Automatically identifies potentially risky clauses in legal documents
@@ -242,6 +236,3 @@ This project is for educational and personal use. Please ensure you have the rig
 ---
 
 **Made with ❤️ for demystifying legal documents and empowering better contract negotiations**
-#   l e g a l - a n a l y z e r  
- #   l e g a l - a n a l y z e r  
- 
